@@ -1,7 +1,7 @@
 import 'package:flutter_tangram/model/shape_model.dart';
 import 'package:flutter/material.dart';
 
-class TargetWidget extends StatelessWidget {
+class TargetWidget extends StatefulWidget {
   final ShapeModel shapeModel;
   const TargetWidget({
     Key key,
@@ -9,20 +9,25 @@ class TargetWidget extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  _TargetWidgetState createState() => _TargetWidgetState();
+}
+
+class _TargetWidgetState extends State<TargetWidget> {
+  @override
   Widget build(BuildContext context) {
     return Positioned(
-      top: shapeModel.targetPosition.x,
-      left: shapeModel.targetPosition.y,
+      top: widget.shapeModel.targetPosition.x,
+      left: widget.shapeModel.targetPosition.y,
       child: DragTarget<ShapeModel>(
         builder: (context, candidateData, rejectedData) => RotationTransition(
-          turns: AlwaysStoppedAnimation(shapeModel.rotationAngle),
+          turns: AlwaysStoppedAnimation(widget.shapeModel.rotationAngle),
           child: ClipPath(
             child: Container(
-              color: shapeModel.targetColor,
-              width: shapeModel.width,
-              height: shapeModel.height,
+              color: widget.shapeModel.targetColor,
+              width: widget.shapeModel.width,
+              height: widget.shapeModel.height,
             ),
-            clipper: shapeModel.shape,
+            clipper: widget.shapeModel.shape,
           ),
         ),
         onWillAccept: (data) {
@@ -30,7 +35,10 @@ class TargetWidget extends StatelessWidget {
           return true;
         },
         onAccept: (data) {
-          print(data);
+          setState(() {
+            data.isPlaced = true;
+            data.targetColor = data.color;
+          });
         },
       ),
     );

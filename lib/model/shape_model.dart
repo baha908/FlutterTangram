@@ -11,7 +11,7 @@ class ShapeModel {
   final PositionModel targetPosition;
   final PositionModel position;
   final Color color;
-  final Color targetColor;
+  Color targetColor;
   final CustomClipper shape;
   final double rotationAngle;
 
