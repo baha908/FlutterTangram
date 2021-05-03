@@ -25,9 +25,12 @@ class TargetWidget extends StatelessWidget {
             clipper: shapeModel.shape,
           ),
         ),
-        onWillAccept: (data) => true,
+        onWillAccept: (data) {
+          print(data);
+          return true;
+        },
         onAccept: (data) {
-          data.isPlaced = false;
+          print(data);
         },
       ),
     );

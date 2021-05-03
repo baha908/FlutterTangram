@@ -5,7 +5,7 @@ class ShapeWidget extends StatefulWidget {
   final ShapeModel shapeModel;
   const ShapeWidget({
     Key key,
-    this.shapeModel,
+    @required this.shapeModel,
   }) : super(key: key);
 
   @override
@@ -18,7 +18,7 @@ class _ShapeWidgetState extends State<ShapeWidget> {
     return Positioned(
       top: widget.shapeModel.position.y,
       left: widget.shapeModel.position.x,
-      child: Draggable<ShapeModel>(
+      child: Draggable(
         feedback: RotationTransition(
           turns: AlwaysStoppedAnimation(widget.shapeModel.rotationAngle),
           child: ClipPath(

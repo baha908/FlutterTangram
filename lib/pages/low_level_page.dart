@@ -13,9 +13,9 @@ class LowLevelPage extends StatefulWidget {
   final List<ShapeModel> shapes = [
     ShapeModel(
       id: 1,
-      height: 500,
-      width: 500,
-      targetPosition: PositionModel(250, 250),
+      height: 150,
+      width: 150,
+      targetPosition: PositionModel(25, 250),
       position: PositionModel(25, 25),
       color: Colors.red,
       targetColor: Colors.yellow,
@@ -24,9 +24,9 @@ class LowLevelPage extends StatefulWidget {
     ),
     ShapeModel(
       id: 2,
-      height: 250,
-      width: 250,
-      targetPosition: PositionModel(250, 250),
+      height: 150,
+      width: 150,
+      targetPosition: PositionModel(250, 500),
       position: PositionModel(250, 250),
       color: Colors.red,
       targetColor: Colors.yellow,
@@ -48,8 +48,8 @@ class _LowLevelPageState extends State<LowLevelPage> {
       body: Center(
         child: Container(
           child: Stack(children: [
-            ShapeWidget(shapeModel: widget.shapes[0]),
-            TargetWidget(shapeModel: widget.shapes[0]),
+            ...widget.shapes.map((e) => TargetWidget(shapeModel: e)),
+            ...widget.shapes.map((e) => ShapeWidget(shapeModel: e)),
           ]),
         ),
       ),
