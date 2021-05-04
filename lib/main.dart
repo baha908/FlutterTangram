@@ -1,13 +1,8 @@
-import 'dart:math';
-
-import 'package:flutter_tangram/model/shape_model.dart';
-import 'package:flutter_tangram/model/shapes.dart';
 import 'package:flutter_tangram/pages/hard_level_page.dart';
 import 'package:flutter_tangram/pages/help_page.dart';
 import 'package:flutter_tangram/pages/home_page.dart';
 import 'package:flutter_tangram/pages/low_level_page.dart';
 import 'package:flutter_tangram/pages/medium_level_page.dart';
-import 'package:flutter_tangram/widget/shape_widget.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());

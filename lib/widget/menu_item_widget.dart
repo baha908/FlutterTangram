@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tangram/pages/help_page.dart';
 
 class MenuItemWidget extends StatelessWidget {
   final String name;

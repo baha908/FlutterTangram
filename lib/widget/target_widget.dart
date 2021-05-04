@@ -35,10 +35,12 @@ class _TargetWidgetState extends State<TargetWidget> {
           return true;
         },
         onAccept: (data) {
-          setState(() {
-            data.isPlaced = true;
-            data.targetColor = data.color;
-          });
+          if (data.id == widget.shapeModel.id) {
+            setState(() {
+              data.isPlaced = true;
+              data.targetColor = data.color;
+            });
+          }
         },
       ),
     );

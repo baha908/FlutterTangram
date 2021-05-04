@@ -12,8 +12,7 @@ class Triangle extends CustomClipper<Path> {
 
   @override
   bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
-    // TODO: implement shouldReclip
-    throw UnimplementedError();
+    return false;
   }
 }
 
@@ -30,7 +29,32 @@ class Square extends CustomClipper<Path> {
 
   @override
   bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
-    // TODO: implement shouldReclip
-    throw UnimplementedError();
+    return false;
+  }
+}
+
+class Paralelogram extends CustomClipper<Path> {
+  final bool flip;
+  Paralelogram({this.flip = false});
+  @override
+  Path getClip(Size size) {
+    return (flip)
+        ? (Path()
+          ..moveTo(0, 0)
+          ..lineTo(size.width - size.height, 0)
+          ..lineTo(size.width, size.height)
+          ..lineTo(size.height, size.height)
+          ..close())
+        : (Path()
+          ..moveTo(size.height, 0)
+          ..lineTo(size.width, 0)
+          ..lineTo(size.width - size.height, size.height)
+          ..lineTo(0, size.height)
+          ..close());
+  }
+
+  @override
+  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
+    return false;
   }
 }

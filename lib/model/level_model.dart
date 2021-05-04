@@ -1,10 +1,6 @@
 import 'package:flutter_tangram/model/shape_model.dart';
 
-class Level {
+class LevelModel {
   final List<ShapeModel> shapes;
-  Level(this.shapes);
-
-  List<ShapeModel> getLevelFromJson() {
-    return List.empty();
-  }
+  const LevelModel(this.shapes);
 }
