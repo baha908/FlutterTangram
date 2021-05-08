@@ -48,7 +48,7 @@ class _ShapeWidgetState extends State<ShapeWidget> {
               onDragEnd: (DraggableDetails d) {
                 setState(() {
                   widget.shapeModel.position
-                      .setPosition(d.offset.dx, d.offset.dy - 56);
+                      .setPosition(d.offset.dx, d.offset.dy);
                 });
               },
             ),
