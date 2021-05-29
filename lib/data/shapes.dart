@@ -1,6 +1,22 @@
 import 'package:flutter/material.dart';
 
+CustomClipper<Path> shapesToCustomClipper(String shape) {
+  switch (shape) {
+    case "Triangle":
+      return Triangle();
+    case "Square":
+      return Triangle();
+    case "Paralelogram":
+      return Paralelogram();
+    case "FlipParalelogram":
+      return Paralelogram(flip: true);
+    default:
+      throw Exception('Error');
+  }
+}
+
 class Triangle extends CustomClipper<Path> {
+  const Triangle();
   @override
   Path getClip(Size size) {
     return Path()
@@ -17,6 +33,7 @@ class Triangle extends CustomClipper<Path> {
 }
 
 class Square extends CustomClipper<Path> {
+  const Square();
   @override
   Path getClip(Size size) {
     return Path()
@@ -35,7 +52,7 @@ class Square extends CustomClipper<Path> {
 
 class Paralelogram extends CustomClipper<Path> {
   final bool flip;
-  Paralelogram({this.flip = false});
+  const Paralelogram({this.flip = false});
   @override
   Path getClip(Size size) {
     return (flip)

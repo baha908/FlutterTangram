@@ -1,56 +1,47 @@
-import 'package:flutter_tangram/data/levels.dart';
-import 'package:flutter_tangram/model/shape_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_tangram/pages/low_level_page.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_tangram/bloc/level/level_bloc.dart';
+import 'package:flutter_tangram/data/shapes.dart';
+import 'package:flutter_tangram/model/shape.dart';
 
-class TargetWidget extends StatefulWidget {
-  final ShapeModel shapeModel;
-  final Levels levels;
+class TargetWidget extends StatelessWidget {
+  final Shape shape;
   const TargetWidget({
-    Key key,
-    @required this.shapeModel,
-    @required this.levels,
+    Key? key,
+    required this.shape,
   }) : super(key: key);
 
   @override
-  _TargetWidgetState createState() => _TargetWidgetState();
-}
-
-class _TargetWidgetState extends State<TargetWidget> {
-  @override
   Widget build(BuildContext context) {
-    print(widget.levels.currentLevel);
-    return Positioned(
-      top: widget.shapeModel.targetPosition.x,
-      left: widget.shapeModel.targetPosition.y,
-      child: DragTarget<ShapeModel>(
-        builder: (context, candidateData, rejectedData) => RotationTransition(
-          turns: AlwaysStoppedAnimation(widget.shapeModel.rotationAngle),
-          child: ClipPath(
-            child: Container(
-              color: widget.shapeModel.targetColor,
-              width: widget.shapeModel.width,
-              height: widget.shapeModel.height,
+    return BlocBuilder<LevelBloc, LevelState>(
+      builder: (context, state) {
+        return Positioned(
+          top: shape.targetPosition.x,
+          left: shape.targetPosition.y,
+          child: DragTarget<Shape>(
+            builder: (context, candidateData, rejectedData) =>
+                RotationTransition(
+              turns: AlwaysStoppedAnimation(shape.rotationAngle),
+              child: ClipPath(
+                child: Container(
+                  color: Color(shape.targetColor),
+                  width: shape.width,
+                  height: shape.height,
+                ),
+                clipper: shapesToCustomClipper(shape.shape),
+              ),
             ),
-            clipper: widget.shapeModel.shape,
+            onWillAccept: (data) {
+              return true;
+            },
+            onAccept: (data) {
+              if (data.id == shape.id) {
+                context.read<LevelBloc>().add(ShapePlaced(shapeId: data.id));
+              }
+            },
           ),
-        ),
-        onWillAccept: (data) {
-          return true;
-        },
-        onAccept: (data) {
-          if (data.id == widget.shapeModel.id) {
-            setState(() {
-              widget.levels.getLevel().score += 1;
-              data.isPlaced = true;
-              data.targetColor = data.color;
-            });
-          }
-          if (widget.levels.getLevel().isGameOver) {
-            setState(() {});
-          }
-        },
-      ),
+        );
+      },
     );
   }
 }

@@ -20,22 +20,22 @@ class HomePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               MenuItemWidget(
-                color: Colors.grey[700],
+                color: Colors.grey[700]!,
                 name: "Help",
                 routeName: HelpPage.routeName,
               ),
               MenuItemWidget(
-                color: Colors.green[700],
+                color: Colors.green[700]!,
                 name: "Low",
                 routeName: LowLevelPage.routeName,
               ),
               MenuItemWidget(
-                color: Colors.yellow[700],
+                color: Colors.yellow[700]!,
                 name: "Medium",
                 routeName: MediumLevelPage.routeName,
               ),
               MenuItemWidget(
-                color: Colors.red[700],
+                color: Colors.red[700]!,
                 name: "Hard",
                 routeName: HardLevelPage.routeName,
               ),
