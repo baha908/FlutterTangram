@@ -42,7 +42,7 @@ class _LevelWidgetState extends State<LevelWidget> {
     );
   }
 
-  Container _buildLevel(LevelState state) {
+  Widget _buildLevel(LevelState state) {
     return Container(
       child: Stack(children: [
         ...state.shapes.map((e) => TargetWidget(shape: e)),
@@ -51,40 +51,68 @@ class _LevelWidgetState extends State<LevelWidget> {
     );
   }
 
-  Container _buildLevelLoading(LevelState state) {
-    Color colorr = Colors.white;
-    if (state.difficulty == 1) {
-      colorr = Colors.green;
-    } else if (state.difficulty == 2) {
-      colorr = Colors.yellow;
-    } else if (state.difficulty == 3) {
-      colorr = Colors.red;
-    }
+  Widget _buildLevelLoading(LevelState state) {
     return Container(
-        color: colorr,
+        color: _difficultyToColor(state.difficulty),
         child: Center(
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
-              Text("Difficulty : " + state.difficulty.toString()),
-              Text("Level : " + state.levelNo.toString())
+              Text(
+                state.levelNo.toString(),
+                style: TextStyle(
+                    color: Colors.white,
+                    decoration: TextDecoration.none,
+                    fontSize: 80),
+              ),
             ],
           ),
         ));
   }
 
-  Center _buildLevelEnd(BuildContext context) {
-    return Center(
-      child: Column(
-        children: [
-          Text('game over'),
-          ElevatedButton(
-            child: Text('ana sayfa'),
-            onPressed: () {
-              Navigator.of(context).pushNamed(HomePage.routeName);
-            },
-          ),
-        ],
+  Widget _buildLevelEnd(BuildContext context) {
+    return Container(
+      color: Colors.red,
+      child: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              "Game Over",
+              style: TextStyle(
+                  color: Colors.white,
+                  decoration: TextDecoration.none,
+                  fontSize: 60),
+            ),
+            SizedBox(
+              height: 200,
+            ),
+            TextButton(
+              child: Text(
+                'Play Again',
+                style: TextStyle(color: Colors.yellow, fontSize: 30),
+              ),
+              onPressed: () {
+                Navigator.of(context).pushNamedAndRemoveUntil(
+                    HomePage.routeName, (route) => false);
+              },
+            ),
+          ],
+        ),
       ),
     );
+  }
+
+  _difficultyToColor(int difficulty) {
+    switch (difficulty) {
+      case 1:
+        return Colors.green;
+      case 2:
+        return Colors.yellow[700];
+      case 3:
+        return Colors.red;
+      default:
+        return Exception("Wrong difficuly value");
+    }
   }
 }

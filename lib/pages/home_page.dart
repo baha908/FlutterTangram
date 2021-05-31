@@ -26,11 +26,6 @@ class HomePage extends StatelessWidget {
                 routeName: HelpPage.routeName,
               ),
               MenuItemWidget(
-                color: Colors.grey[700]!,
-                name: "Developers",
-                routeName: DevelopersPage.routeName,
-              ),
-              MenuItemWidget(
                 color: Colors.green[700]!,
                 name: "Low",
                 routeName: LowLevelPage.routeName,
@@ -44,6 +39,11 @@ class HomePage extends StatelessWidget {
                 color: Colors.red[700]!,
                 name: "Hard",
                 routeName: HardLevelPage.routeName,
+              ),
+              MenuItemWidget(
+                color: Colors.grey[700]!,
+                name: "Developers",
+                routeName: DevelopersPage.routeName,
               ),
             ],
           ),
