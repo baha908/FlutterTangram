@@ -51,15 +51,25 @@ class _LevelWidgetState extends State<LevelWidget> {
     );
   }
 
-  Center _buildLevelLoading(LevelState state) {
-    return Center(
-      child: Column(
-        children: [
-          Text(state.difficulty.toString()),
-          Text(state.levelNo.toString())
-        ],
-      ),
-    );
+  Container _buildLevelLoading(LevelState state) {
+    Color colorr = Colors.white;
+    if (state.difficulty == 1) {
+      colorr = Colors.green;
+    } else if (state.difficulty == 2) {
+      colorr = Colors.yellow;
+    } else if (state.difficulty == 3) {
+      colorr = Colors.red;
+    }
+    return Container(
+        color: colorr,
+        child: Center(
+          child: Column(
+            children: [
+              Text("Difficulty : " + state.difficulty.toString()),
+              Text("Level : " + state.levelNo.toString())
+            ],
+          ),
+        ));
   }
 
   Center _buildLevelEnd(BuildContext context) {

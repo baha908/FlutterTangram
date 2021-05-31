@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tangram/pages/hard_level_page.dart';
 import 'package:flutter_tangram/pages/help_page.dart';
+import 'package:flutter_tangram/pages/developers_page.dart';
 import 'package:flutter_tangram/pages/low_level_page.dart';
 import 'package:flutter_tangram/pages/medium_level_page.dart';
 import 'package:flutter_tangram/widget/menu_item_widget.dart';
@@ -23,6 +24,11 @@ class HomePage extends StatelessWidget {
                 color: Colors.grey[700]!,
                 name: "Help",
                 routeName: HelpPage.routeName,
+              ),
+              MenuItemWidget(
+                color: Colors.grey[700]!,
+                name: "Developers",
+                routeName: DevelopersPage.routeName,
               ),
               MenuItemWidget(
                 color: Colors.green[700]!,

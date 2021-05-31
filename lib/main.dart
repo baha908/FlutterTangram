@@ -6,7 +6,7 @@ import 'package:flutter_tangram/pages/help_page.dart';
 import 'package:flutter_tangram/pages/home_page.dart';
 import 'package:flutter_tangram/pages/low_level_page.dart';
 import 'package:flutter_tangram/pages/medium_level_page.dart';
-
+import 'package:flutter_tangram/pages/developers_page.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
@@ -21,8 +21,10 @@ class MyApp extends StatelessWidget {
         title: 'Material App',
         initialRoute: HomePage.routeName,
         routes: {
+
           HomePage.routeName: (_) => HomePage(),
           HelpPage.routeName: (_) => HelpPage(),
+          DevelopersPage.routeName:(_) => DevelopersPage(),
           LowLevelPage.routeName: (_) => LowLevelPage(),
           MediumLevelPage.routeName: (_) => MediumLevelPage(),
           HardLevelPage.routeName: (_) => HardLevelPage(),
